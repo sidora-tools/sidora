@@ -1,0 +1,29 @@
+Package: sidora
+Type: Package
+Title: Web App for PANDORA (MPI-SHH DAG)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "James",
+           middle = "A.",
+           family = "Fellows Yates",
+           role = c("aut", "cre"),
+           email = "jfy133@gmail.com",
+           comment = c(ORCID = "0000-0001-5585-6277"))
+Description: Package to host the web app companion of the PANDORA database (MPI-SHH DAG).
+License: What license it uses
+Encoding: UTF-8
+LazyData: true
+Depends:
+  R (>= 2.10)
+Imports:
+  dplyr,
+  dbplyr,
+  magrittr,
+  tibble,
+  utils,
+  shiny
+Suggests: 
+  DBI,
+  RMariaDB,
+  testthat (>= 2.1.0)
+RoxygenNote: 7.0.2
