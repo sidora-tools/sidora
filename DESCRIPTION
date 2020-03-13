@@ -10,7 +10,7 @@ Authors@R:
            email = "jfy133@gmail.com",
            comment = c(ORCID = "0000-0001-5585-6277"))
 Description: Package to host the web app companion of the PANDORA database (MPI-SHH DAG).
-License: What license it uses
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
