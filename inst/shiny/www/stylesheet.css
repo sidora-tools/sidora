@@ -26,7 +26,6 @@ body {
 }
 
 .main-header .logo {
-  content: url(https://raw.githubusercontent.com/sidora-tools/sidora/master/inst/shiny/www/Athena_skull_v2_2_32x110_white_text.svg);
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
   font-size: 24px;

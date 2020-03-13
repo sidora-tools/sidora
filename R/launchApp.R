@@ -12,5 +12,5 @@
 
 # wrapper for shiny::shinyApp()
 launchApp <- function() {
-  shinyApp(ui = shinyAppUI, server = shinyAppServer)
+  shiny::shinyApp(ui = shinyAppUI, server = shinyAppServer)
 }
