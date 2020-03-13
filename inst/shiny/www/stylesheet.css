@@ -1,0 +1,60 @@
+/* main stylesheet of the app -- only complements the shinydashboard defaults */
+
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700&display=swap&subset=latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400&display=swap&subset=latin-ex);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:300,400&display=swap);
+
+body {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+/* sidebar */
+.main-sidebar {
+  font-size: 14px;
+  z-index:400;
+}
+
+.skin-green .main-sidebar {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+/* header line */
+.main-header {
+  z-index:500;
+}
+
+.main-header .logo {
+  /* content: url(shiny/www/Athena_skull_v2_2_32x110_white_text.svg); */
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+/* symbol in the top right corner */
+.corner_symbol {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  z-index:1000;
+  height: 37px;
+  width: 37px;
+  font-size: 37px;
+  color: white;
+  margin-right:5px;
+}
+
+/* Fixes flexdashboard gauge from https://stackoverflow.com/a/54667429/11502856 */
+.html-widget.gauge {
+  height: 100%; /*or try sth like 320px instead of 100%, whatever you prefer*/
+  width: 100%;
+}
+
+.html-widget.gauge svg {
+  height: 100%; /*or try sth like 320px instead of 100%, whatever you prefer*/
+  width: 100%;
+  margin-top: -10px;
+  margin-bottom: -40px;
+}
