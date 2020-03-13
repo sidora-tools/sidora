@@ -21,7 +21,12 @@ Imports:
   magrittr,
   tibble,
   utils,
-  shiny
+  shiny,
+  plotly,
+  flexdashboard,
+  shinydashboard,
+  shinyhelper,
+  shinycustomloader
 Suggests: 
   DBI,
   RMariaDB,
