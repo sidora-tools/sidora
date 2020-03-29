@@ -1,5 +1,4 @@
 
-
 #' Shiny app server function
 #'
 #'
@@ -31,7 +30,14 @@ shinyAppUI <- shinydashboard::dashboardPage(
         selected = T,
         startExpanded = TRUE
       )
-    )
+    ),
+    shiny::h3("Filters"),
+    #uiOutput("date_range"),
+    shiny::uiOutput("tag_include_list"),
+    shiny::uiOutput("tag_exclude_list"),
+    shiny::uiOutput("project_include_list"),
+    shiny::uiOutput("project_exclude_list"),
+    shiny::h3("What")
   ),
   shinydashboard::dashboardBody(
     shiny::tags$head(

@@ -1,4 +1,4 @@
-#' launches the shinyAppDemo app
+#' Launches the Sidora shiny app
 #'
 #' @export launchApp
 #'
