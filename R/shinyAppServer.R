@@ -1,11 +1,6 @@
+# Shiny app server function
 
-#' Shiny app server function
-#'
-#' @param input provided by shiny
-#' @param output provided by shiny
-#'
-#' @export
-shinyAppServer <- function(input, output) {
+shinyAppServer <- function(input, output, session) {
 
   ##########################
   ## Get connection ##
@@ -22,13 +17,10 @@ shinyAppServer <- function(input, output) {
     sidora.core::get_df("TAB_Tag", con) %>% dplyr::pull(Name)
   })
 
-  # project_list <- reactive({
-  #   req(con)
-  #   print("Loading project tags")
-  #   sidora.core::get_df("TAB_Project", con) %>% print %>% dplyr::pull(Name)
-  # })
-
-  project_list <-
+  project_list <- reactive({
+    req(con)
+    sidora.core::get_df("TAB_Project", con) %>% dplyr::pull(Name)
+  })
 
   output$tag_include_list <- renderUI({
     req(con, tag_list)
@@ -52,7 +44,6 @@ shinyAppServer <- function(input, output) {
 
   output$project_include_list <- renderUI({
     req(con, project_list)
-    print(project_list())
     selectInput("selected_project",
                 "Select Project(s):",
                 as.list(project_list()),
