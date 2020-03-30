@@ -21,6 +21,7 @@ Imports:
   magrittr,
   tibble,
   utils,
+  rlang,
   shiny,
   plotly,
   flexdashboard,
