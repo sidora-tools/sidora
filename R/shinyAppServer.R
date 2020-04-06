@@ -1,11 +1,6 @@
+# Shiny app server function
 
-#' Shiny app server function
-#'
-#' @param input provided by shiny
-#' @param output provided by shiny
-#'
-#' @export
-shinyAppServer <- function(input, output) {
+shinyAppServer <- function(input, output, session) {
 
   ##########################
   ## Get connection ##
@@ -17,22 +12,19 @@ shinyAppServer <- function(input, output) {
   ## User defined Filters ##
   ##########################
 
-  tag_list <- reactive({
-    req(con)
-    sidora.core::get_df("TAB_Tag", con) %>% dplyr::pull(Name)
+  tag_list <- shiny::reactive({
+    shiny::req(con)
+    sidora.core::get_df("TAB_Tag", con) %>% dplyr::pull(.data$Name)
   })
 
-  # project_list <- reactive({
-  #   req(con)
-  #   print("Loading project tags")
-  #   sidora.core::get_df("TAB_Project", con) %>% print %>% dplyr::pull(Name)
-  # })
+  project_list <- shiny::reactive({
+    shiny::req(con)
+    sidora.core::get_df("TAB_Project", con) %>% dplyr::pull(.data$Name)
+  })
 
-  project_list <-
-
-  output$tag_include_list <- renderUI({
-    req(con, tag_list)
-    selectInput("selected_tag",
+  output$tag_include_list <- shiny::renderUI({
+    shiny::req(con, tag_list)
+    shiny::selectInput("selected_tag",
                 "Select Tag(s):",
                 as.list(tag_list()),
                 selectize =  T,
@@ -40,9 +32,9 @@ shinyAppServer <- function(input, output) {
                 selected = "")
   })
 
-  output$tag_exclude_list <- renderUI({
-    req(con, tag_list)
-    selectInput("excluded_tag",
+  output$tag_exclude_list <- shiny::renderUI({
+    shiny::req(con, tag_list)
+    shiny::selectInput("excluded_tag",
                 "Exclude Tag(s):",
                 as.list(tag_list()),
                 selectize =  T,
@@ -50,10 +42,9 @@ shinyAppServer <- function(input, output) {
                 selected = "")
   })
 
-  output$project_include_list <- renderUI({
-    req(con, project_list)
-    print(project_list())
-    selectInput("selected_project",
+  output$project_include_list <- shiny::renderUI({
+    shiny::req(con, project_list)
+    shiny::selectInput("selected_project",
                 "Select Project(s):",
                 as.list(project_list()),
                 selectize =  T,
@@ -61,9 +52,9 @@ shinyAppServer <- function(input, output) {
                 selected = "")
   })
 
-  output$project_exclude_list <- renderUI({
-    req(con, project_list)
-    selectInput("excluded_project",
+  output$project_exclude_list <- shiny::renderUI({
+    shiny::req(con, project_list)
+    shiny::selectInput("excluded_project",
                 "Exclude Project(s):",
                 as.list(project_list()),
                 selectize =  T,
@@ -71,24 +62,24 @@ shinyAppServer <- function(input, output) {
                 selected = "")
   })
 
-  output$distPlot <- renderPlot({
+  output$distPlot <- shiny::renderPlot({
     # generate bins based on input$bins from ui.R
     x    <- datasets::"faithful"[, 2]
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
     # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    graphics::hist(x, breaks = bins, col = 'darkgray', border = 'white')
   })
 
   ##############
   ## Shutdown ##
   ##############
 
-  onSessionEnded(function() {
+  shiny::onSessionEnded(function() {
 
     RMariaDB::dbDisconnect(con)
 
-    stopApp()
+    shiny::stopApp()
   })
 
 }

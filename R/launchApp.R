@@ -1,16 +1,14 @@
 #' Launches the Sidora shiny app
 #'
-#' @export launchApp
-#'
 #' @return shiny application object
 #'
-#' @example \dontrun {launchApp()}
+#' @examples
+#' \dontrun{
+#' launchApp()
+#' }
 #'
-#' @import shiny
-#'
-
-
-# wrapper for shiny::shinyApp()
+#' @export
 launchApp <- function() {
-  shiny::shinyApp(ui = shinyAppUI, server = shinyAppServer)
+  app_object <- shiny::shinyApp(ui = shinyAppUI, server = shinyAppServer)
+  shiny::runApp(app_object)
 }
