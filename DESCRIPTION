@@ -27,9 +27,12 @@ Imports:
   flexdashboard,
   shinydashboard,
   shinyhelper,
-  shinycustomloader
+  shinycustomloader,
+  sidora.core
 Suggests: 
   DBI,
   RMariaDB,
   testthat (>= 2.1.0)
+Remotes:
+  git@github.com:sidora-tools/sidora.core.git
 RoxygenNote: 7.1.0
