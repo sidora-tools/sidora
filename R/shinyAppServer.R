@@ -2,9 +2,9 @@
 
 shinyAppServer <- function(input, output, session) {
 
-  ##########################
+  ####################
   ## Get connection ##
-  ##########################
+  ####################
 
   con <- sidora.core::get_pandora_connection()
 

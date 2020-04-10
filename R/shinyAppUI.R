@@ -25,6 +25,50 @@ shinyAppUI <- function() {
           icon = shiny::icon("tachometer-alt"),
           selected = T,
           startExpanded = TRUE
+        ),
+        shinydashboard::menuItem(
+          "Maps",
+          tabName = "my_maps",
+          icon = icon("map"),
+          shinydashboard::menuSubItem(
+            "Individuals Map",
+            tabName = "individual_map"
+          ),
+          shinydashboard::menuSubItem(
+            "Samples Map",
+            tabName = "sample_map"
+          ),
+          shinydashboard::menuSubItem(
+            "Sample Type Map",
+            tabName = "sampletype_map"
+          )
+        ),
+        shinydashboard::menuItem(
+          "Archaeological Info",
+          tabName = "arch_info",
+          icon = icon("tooth")
+                                 ),
+        shinydashboard::menuItem(
+          "Laboratory Info",
+          tabName = "lab_info",
+          icon = icon("flask")
+        ) ,
+        shinydashboard::menuItem(
+          "Progress",
+          shinydashboard::menuSubItem(
+            "Progress Table",
+            tabName = "progress_table"
+          ),
+          shinydashboard::menuSubItem(
+            "Progress Chart",
+            tabName = "progress_chart"
+          ),
+          shinydashboard::menuSubItem(
+            "Capture Progress Table",
+            tabName = "captureprogress_table"
+          ),
+          tabName = "progress_super",
+          icon = icon("table")
         )
       ),
       shiny::h3("Filters"),
@@ -45,6 +89,7 @@ shinyAppUI <- function() {
       shiny::uiOutput("tag_exclude_list"),
       shiny::uiOutput("project_include_list"),
       shiny::uiOutput("project_exclude_list"),
+      shiny::actionButton("go", "Update Filter")
     ),
     shinydashboard::dashboardBody(
       shiny::tags$head(
