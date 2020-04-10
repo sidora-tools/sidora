@@ -1,15 +1,15 @@
 #' Shiny app ui function
 
-shinyAppUI <- function() {
+shiny_app_ui <- function() {
 
   shinydashboard::dashboardPage(
     skin = "green",
     shinydashboard::dashboardHeader(
-      title = shiny::tags$a(href = 'https://github.com/sidora-tools/sidora',
+      title = shiny::tags$a(href = "https://github.com/sidora-tools/sidora",
                             shiny::tags$img(shiny::includeHTML(
                               system.file(
-                                'shiny/www/Athena_skull_v2_2_32x110_white_text.svg',
-                                package = 'sidora'
+                                "shiny/www/Athena_skull_v2_2_32x110_white_text.svg",
+                                package = "sidora"
                               )
                             ))),
       titleWidth = 270
@@ -29,7 +29,7 @@ shinyAppUI <- function() {
         shinydashboard::menuItem(
           "Maps",
           tabName = "my_maps",
-          icon = icon("map"),
+          icon = shiny::icon("map"),
           shinydashboard::menuSubItem(
             "Individuals Map",
             tabName = "individual_map"
@@ -46,13 +46,13 @@ shinyAppUI <- function() {
         shinydashboard::menuItem(
           "Archaeological Info",
           tabName = "arch_info",
-          icon = icon("tooth")
-                                 ),
+          icon = shiny::icon("tooth")
+          ),
         shinydashboard::menuItem(
           "Laboratory Info",
           tabName = "lab_info",
-          icon = icon("flask")
-        ) ,
+          icon = shiny::icon("flask")
+        ),
         shinydashboard::menuItem(
           "Progress",
           shinydashboard::menuSubItem(
@@ -68,7 +68,7 @@ shinyAppUI <- function() {
             tabName = "captureprogress_table"
           ),
           tabName = "progress_super",
-          icon = icon("table")
+          icon = shiny::icon("table")
         )
       ),
       shiny::h3("Filters"),
@@ -95,11 +95,30 @@ shinyAppUI <- function() {
       shiny::tags$head(
         shiny::tags$link(rel = "shortcut icon", href = "favicon.ico"),
         # stylesheet
-        shiny::includeCSS(system.file("shiny/www/stylesheet.css", package = "sidora"))
+        shiny::includeCSS(
+          system.file("shiny/www/stylesheet.css",
+                      package = "sidora"))
       ),
       shiny::a(href = "https://github.com/sidora-tools/sidora",
                shiny::div(class = "corner_symbol",
                           shiny::icon("github"))),
+      shinydashboard::tabItems(
+        shinydashboard::tabItem(
+          tabName = "overview",
+          shiny::fluidRow(
+            shinydashboard::box(width = 3,
+                                collapsible = T,
+                                collapsed = F,
+                                shinycustomloader::withLoader(
+                                  shinydashboard::valueBoxOutput("site_box",
+                                                                 width = 100),
+                                  type = "image",
+                                  system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+                                )
+            )
+          )
+        )
+      )
 
     )
   )
