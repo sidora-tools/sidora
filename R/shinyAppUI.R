@@ -28,12 +28,23 @@ shinyAppUI <- function() {
         )
       ),
       shiny::h3("Filters"),
+      shiny::dateRangeInput("date_range",
+                     "Date Range",
+                     start = lubridate::as_date("2016-01-01"),
+                     end = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
+                     min = lubridate::as_date("2016-01-01"),
+                     max = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
+                     format = "yyyy-mm-dd",
+                     startview = "year",
+                     weekstart = 0,
+                     language = "en",
+                     separator = " to ",
+                     width = NULL),
       #uiOutput("date_range"),
       shiny::uiOutput("tag_include_list"),
       shiny::uiOutput("tag_exclude_list"),
       shiny::uiOutput("project_include_list"),
       shiny::uiOutput("project_exclude_list"),
-      shiny::h3("What")
     ),
     shinydashboard::dashboardBody(
       shiny::tags$head(
