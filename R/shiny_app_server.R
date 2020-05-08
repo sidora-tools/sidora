@@ -109,6 +109,80 @@ shiny_app_server <- function(input, output, session) {
                              color = "blue")
   })
 
+  output$individual_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Individual %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Individual",
+                             icon = shiny::icon("female"),
+                             color = "light-blue")
+  })
+
+  output$sample_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Sample %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Sample",
+                             icon = shiny::icon("skull"),
+                             color = "aqua")
+  })
+
+  output$extract_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Extract %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Extract",
+                             icon = shiny::icon("vial"),
+                             color = "yellow")
+  })
+
+  output$library_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Library %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Library",
+                             icon = shiny::icon("book"),
+                             color = "orange")
+  })
+
+  output$capture_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Capture %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Capture",
+                             icon = shiny::icon("magnet"),
+                             color = "red")
+  })
+
+  output$rawdata_box <- shinydashboard::renderInfoBox({
+    shiny::req(con, all_tables)
+
+    result <- all_tables()$TAB_Raw_Data %>% nrow
+
+    shinydashboard::valueBox(result,
+                             "Capture",
+                             icon = shiny::icon("stream"),
+                             color = "red")
+  })
+
+  # output$extlib_gauge <- flexdashboard::renderGauge()
+  #
+  # output$libcap_gauge <- flexdashboard::renderGauge()
+  #
+  # output$capseq_gauge <- flexdashboard::renderGauge()
+  #
+  # output$monthlyreads_gauge <- flexdashboard::renderGauge()
+
   ##############
   ## Shutdown ##
   ##############

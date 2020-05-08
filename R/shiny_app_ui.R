@@ -1,7 +1,6 @@
 #' Shiny app ui function
 
 shiny_app_ui <- function() {
-
   shinydashboard::dashboardPage(
     skin = "green",
     shinydashboard::dashboardHeader(
@@ -30,24 +29,18 @@ shiny_app_ui <- function() {
           "Maps",
           tabName = "my_maps",
           icon = shiny::icon("map"),
-          shinydashboard::menuSubItem(
-            "Individuals Map",
-            tabName = "individual_map"
-          ),
-          shinydashboard::menuSubItem(
-            "Samples Map",
-            tabName = "sample_map"
-          ),
-          shinydashboard::menuSubItem(
-            "Sample Type Map",
-            tabName = "sampletype_map"
-          )
+          shinydashboard::menuSubItem("Individuals Map",
+                                      tabName = "individual_map"),
+          shinydashboard::menuSubItem("Samples Map",
+                                      tabName = "sample_map"),
+          shinydashboard::menuSubItem("Sample Type Map",
+                                      tabName = "sampletype_map")
         ),
         shinydashboard::menuItem(
           "Archaeological Info",
           tabName = "arch_info",
           icon = shiny::icon("tooth")
-          ),
+        ),
         shinydashboard::menuItem(
           "Laboratory Info",
           tabName = "lab_info",
@@ -55,35 +48,31 @@ shiny_app_ui <- function() {
         ),
         shinydashboard::menuItem(
           "Progress",
-          shinydashboard::menuSubItem(
-            "Progress Table",
-            tabName = "progress_table"
-          ),
-          shinydashboard::menuSubItem(
-            "Progress Chart",
-            tabName = "progress_chart"
-          ),
-          shinydashboard::menuSubItem(
-            "Capture Progress Table",
-            tabName = "captureprogress_table"
-          ),
+          shinydashboard::menuSubItem("Progress Table",
+                                      tabName = "progress_table"),
+          shinydashboard::menuSubItem("Progress Chart",
+                                      tabName = "progress_chart"),
+          shinydashboard::menuSubItem("Capture Progress Table",
+                                      tabName = "captureprogress_table"),
           tabName = "progress_super",
           icon = shiny::icon("table")
         )
       ),
       shiny::h3("Filters"),
-      shiny::dateRangeInput("date_range",
-                     "Date Range",
-                     start = lubridate::as_date("2016-01-01"),
-                     end = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
-                     min = lubridate::as_date("2016-01-01"),
-                     max = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
-                     format = "yyyy-mm-dd",
-                     startview = "year",
-                     weekstart = 0,
-                     language = "en",
-                     separator = " to ",
-                     width = NULL),
+      shiny::dateRangeInput(
+        "date_range",
+        "Date Range",
+        start = lubridate::as_date("2016-01-01"),
+        end = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
+        min = lubridate::as_date("2016-01-01"),
+        max = lubridate::as_date(format(Sys.Date(), "%Y-%m-%d")),
+        format = "yyyy-mm-dd",
+        startview = "year",
+        weekstart = 0,
+        language = "en",
+        separator = " to ",
+        width = NULL
+      ),
       #uiOutput("date_range"),
       shiny::uiOutput("tag_include_list"),
       shiny::uiOutput("tag_exclude_list"),
@@ -95,9 +84,8 @@ shiny_app_ui <- function() {
       shiny::tags$head(
         shiny::tags$link(rel = "shortcut icon", href = "favicon.ico"),
         # stylesheet
-        shiny::includeCSS(
-          system.file("shiny/www/stylesheet.css",
-                      package = "sidora"))
+        shiny::includeCSS(system.file("shiny/www/stylesheet.css",
+                                      package = "sidora"))
       ),
       shiny::a(href = "https://github.com/sidora-tools/sidora",
                shiny::div(class = "corner_symbol",
@@ -106,16 +94,124 @@ shiny_app_ui <- function() {
         shinydashboard::tabItem(
           tabName = "overview",
           shiny::fluidRow(
-            shinydashboard::box(width = 3,
-                                collapsible = T,
-                                collapsed = F,
-                                shinycustomloader::withLoader(
-                                  shinydashboard::valueBoxOutput("site_box",
-                                                                 width = 100),
-                                  type = "image",
-                                  system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
-                                )
-            )
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("site_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("individual_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("sample_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("extract_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("library_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("capture_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            shinydashboard::box(
+              width = 3,
+              collapsible = T,
+              collapsed = F ,
+              shinycustomloader::withLoader(
+                shinydashboard::valueBoxOutput("rawdata_box",
+                                               width = 100),
+                type = "image",
+                system.file("shiny/www/Athena_Skull_v2_3_1029x1029.gif")
+              )
+            ),
+            br()
+            # shinydashboard::box(
+            #   width = 3,
+            #   collapsible = T,
+            #   collapsed = F,
+            #   shinycustomloader::withLoader(
+            #     flexdashboard::gaugeOutput("extlib_gauge"),
+            #     type = "image",
+            #     "Athena_Skull_v2_3_1029x1029.gif"
+            #   ),
+            # ),
+            # shinydashboard::box(
+            #   width = 3,
+            #   collapsible = T,
+            #   collapsed = F,
+            #   shinycustomloader::withLoader(
+            #     flexdashboard::gaugeOutput("libcap_gauge"),
+            #     type = "image",
+            #     "Athena_Skull_v2_3_1029x1029.gif"
+            #   ),
+            # ),
+            # shinydashboard::box(
+            #   width = 3,
+            #   collapsible = T,
+            #   collapsed = F,
+            #   shinycustomloader::withLoader(
+            #     flexdashboard::gaugeOutput("capseq_gauge"),
+            #     type = "image",
+            #     "Athena_Skull_v2_3_1029x1029.gif"
+            #   )
+            # ),
+            # shinydashboard::box(
+            #   width = 3,
+            #   collapsible = T,
+            #   collapsed = F,
+            #   shinycustomloader::withLoader(
+            #     flexdashboard::gaugeOutput("monthlyreads_gauge"),
+            #     type = "image",
+            #     "Athena_Skull_v2_3_1029x1029.gif"
+            #   )
+            #)
           )
         )
       )
