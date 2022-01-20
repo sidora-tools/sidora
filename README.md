@@ -1,7 +1,8 @@
 # sidora
 Internal R shiny app for displaying and summarising the MPI-SHH Department of Archaeogenetics PANDORA database
 
-Development version.
+> :warning: Development version (...i.e.... not started). 
+> Please see [here](https://github.com/jfy133/sidora) for original version. Ask James for access.
 
 ## How do I load the 'development environment'
 
